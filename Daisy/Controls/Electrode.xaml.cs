@@ -11,7 +11,7 @@ namespace Daisy.Petal
         public Electrode()
         {
             InitializeComponent();
-            DataContext = new ElectrodeViewModel(1, 10, false, false);
+            DataContext = new ElectrodeViewModel(1, 10, EOrientationMarker.SolidTriangle, false, false);
         }
     }
 }

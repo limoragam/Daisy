@@ -2,23 +2,39 @@
 
 namespace Daisy.ViewModels
 {
-    public class ElectrodeViewModel : INotifyPropertyChanged
+    public class ElectrodeViewModel : ViewModelBase
     {
-        public ElectrodeViewModel(int number, int totalNumberOfElectrodes, bool isPosterior, bool meetsAlignmentCriteria)
+        public ElectrodeViewModel(int number, 
+                                  EOrientationMarker orientationMarker, 
+                                  bool isPosterior, 
+                                  bool meetsAlignmentCriteria, 
+                                  double angle)
         {
             Number = number;
-            TotalNumberOfElectrodes = totalNumberOfElectrodes;
+            OrientationMarker = orientationMarker;
             IsPosterior = isPosterior;
             MeetsAlignmentCriteria = meetsAlignmentCriteria;
+            Angle = angle;
         }
 
         #region Data
 
         public int Number { get; set; } = 1;
-        public bool IsPosterior { get; set; } = false;
-        public bool IsSelected { get; set; } = true;
-        public bool MeetsAlignmentCriteria { get; set; } = false;
         public EOrientationMarker OrientationMarker { get; set; }
+        public bool IsPosterior { get; set; } = false;
+        public bool MeetsAlignmentCriteria { get; set; } = false;
+
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set 
+            { 
+                _isSelected = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         private EAblationState _ablationState = EAblationState.Before;
         public EAblationState AblationState
@@ -27,7 +43,7 @@ namespace Daisy.ViewModels
             set 
             { 
                 _ablationState = value;
-                NotifyPropertyChanged(nameof(AblationState));
+                NotifyPropertyChanged();
             }
         }
 
@@ -38,7 +54,7 @@ namespace Daisy.ViewModels
             set 
             { 
                 _numberOfActivations = value;
-                NotifyPropertyChanged(nameof(NumberOfActivations));
+                NotifyPropertyChanged();
             }
         }
 
@@ -49,7 +65,7 @@ namespace Daisy.ViewModels
             set
             {
                 _ablationResult = value;
-                NotifyPropertyChanged(nameof(AblationResult));
+                NotifyPropertyChanged();
             }
         }
 
@@ -58,40 +74,9 @@ namespace Daisy.ViewModels
 
         #region Visual
 
-        private int _totalNumberOfElectrodes = 0;
-        public int TotalNumberOfElectrodes
-        {
-            set
-            {
-                _totalNumberOfElectrodes = value;
-                NotifyPropertyChanged(nameof(Angle));
-            }
-        }
+        public double Angle { get; set; }
 
-        public double Angle 
-        { 
-            get
-            {
-                return CalculateAngle();
-            }
-        }
-
-        private double CalculateAngle()
-        {
-            if (_totalNumberOfElectrodes != 0)
-            {
-                return 360.0 * (Number-1) / _totalNumberOfElectrodes;
-            }
-            return 0;
-        }
-
-        public int Height
-        {
-            get
-            {
-                return 60;
-            }
-        }
+        public int Height { get; set; }
 
         public int NumberFontSize
         {
@@ -107,18 +92,6 @@ namespace Daisy.ViewModels
             {
                 return 12;
             }
-        }
-
-        #endregion
-
-
-        #region INotifyPropertyChanged implementation
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion
