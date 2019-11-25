@@ -7,14 +7,14 @@ namespace Daisy.ViewModels
         public ElectrodeViewModel(int number, 
                                   EOrientationMarker orientationMarker, 
                                   bool isPosterior, 
-                                  bool meetsAlignmentCriteria, 
-                                  double angle)
+                                  double angle,
+                                  double height)
         {
             Number = number;
             OrientationMarker = orientationMarker;
             IsPosterior = isPosterior;
-            MeetsAlignmentCriteria = meetsAlignmentCriteria;
             Angle = angle;
+            Height = height;
         }
 
         #region Data
@@ -22,7 +22,18 @@ namespace Daisy.ViewModels
         public int Number { get; set; } = 1;
         public EOrientationMarker OrientationMarker { get; set; }
         public bool IsPosterior { get; set; } = false;
-        public bool MeetsAlignmentCriteria { get; set; } = false;
+
+        private bool _meetsAlignmentCriteria = false;
+        public bool MeetsAlignmentCriteria
+        {
+            get { return _meetsAlignmentCriteria; }
+            set 
+            { 
+                _meetsAlignmentCriteria = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         private bool _isSelected = true;
         public bool IsSelected
@@ -76,21 +87,20 @@ namespace Daisy.ViewModels
 
         public double Angle { get; set; }
 
-        public int Height { get; set; }
+        public double Height { get; set; }
 
         public int NumberFontSize
         {
             get
             {
-                return 14;
-            }
-        }
-
-        public int IndicatorHeight
-        {
-            get
-            {
-                return 12;
+                int fontSize = 13;
+                int height = (int)Height - 80;
+                while (height > 20)
+                {
+                    ++fontSize;
+                    height -= 20;
+                }
+                return fontSize;
             }
         }
 

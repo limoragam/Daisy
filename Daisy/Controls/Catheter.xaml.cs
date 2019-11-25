@@ -5,9 +5,9 @@ namespace Daisy.Controls
     /// <summary>
     /// Interaction logic for Electrode.xaml
     /// </summary>
-    public partial class Electrode : UserControl
+    public partial class Catheter : UserControl
     {
-        public Electrode()
+        public Catheter()
         {
             InitializeComponent();
         }

@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Catheter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,7 +67,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\DaisyViewModel.cs" />
+    <Compile Include="Controls\Catheter.xaml.cs">
+      <DependentUpon>Catheter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CircularPanel.cs" />
+    <Compile Include="Models\CatheterViewModel.cs" />
     <Compile Include="Converters\ConverterMarkupExtension.cs" />
     <Compile Include="Converters\Converters.cs" />
     <Compile Include="Converters\EnumConverters.cs" />

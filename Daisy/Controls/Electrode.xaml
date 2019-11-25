@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Daisy.Petal.Electrode"
+﻿<UserControl x:Class="Daisy.Controls.Electrode"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -59,10 +59,10 @@
         <Geometry x:Key="DGeometry.Electrode">m 15.998464,44.616495 c 2.315339,-3.158066 5.293319,-12.276423 8.53508,-21.428539 3.923559,-11.076949 3.938849,-14.7832718 2.816399,-18.1146329 -1.814249,-5.38461413 -9.48875,-4.84267513 -13.32946,-4.84267513 -3.840709,0 -11.5152097,-0.541939 -13.32945968,4.84267513 -1.1224501,3.3313611 -1.1071601,7.0376839 2.81639998,18.1146329 3.2417602,9.152116 6.2197402,18.270473 8.5350797,21.428539 0.510381,0.696135 1.3472,0.98397 1.97798,0.98397 0.63078,0 1.4676,-0.287835 1.977981,-0.98397z</Geometry>
         <Geometry x:Key="DGeometry.Posterior">m 272.52281,233.05596 c -3.507,0 -6.35,2.84299 -6.35,6.35 0,3.50701 2.843,6.35 6.35,6.35 3.507,0 6.35,-2.84299 6.35,-6.35 0,-3.50701 -2.843,-6.35 -6.35,-6.35 z m -2.80448,2.80035 h 2.61226 c 1.13331,0 1.98096,0.1977 2.54349,0.59376 0.56668,0.39606 0.85008,0.97989 0.85008,1.7508 0,0.8098 -0.31025,1.42996 -0.9307,1.86138 -0.62042,0.43143 -1.50318,0.64751 -2.64893,0.64751 h -0.94308 v 2.90111 h -1.48312 z m 1.48312,1.14744 v 2.57464 h 0.78806 c 0.76108,0 1.31911,-0.0479 1.67484,-0.27423 0.35571,-0.22632 0.66437,-0.57999 0.66437,-1.06092 0,-0.44557 -0.29006,-0.77811 -0.60857,-0.99735 -0.31848,-0.21925 -0.8146,-0.24214 -1.48878,-0.24214 z</Geometry>
         <Geometry x:Key="DGeometry.MultipleActivations">m 359.06235,172.04663 c -3.507,0 -6.35,2.84299 -6.35,6.35 0,3.50701 2.843,6.35 6.35,6.35 3.507,0 6.35,-2.84299 6.35,-6.35 0,-3.50701 -2.843,-6.35 -6.35,-6.35 z m -0.96477,3.24838 h 1.92958 v 2.13682 h 2.13736 v 1.9296 h -2.13736 v 2.13734 h -1.92958 v -2.13734 h -2.13683 v -1.9296 h 2.13683 z</Geometry>
-        <Geometry x:Key="DGeometry.Triangle">M250.60763847 154.589778356C250.60763847 154.589778356 238.425614912 154.597364636 238.425614912 154.597364636C238.425614912 154.597364636 244.510053352 144.043623647 244.510053352 144.043623647C244.510053352 144.043623647 250.60763847 154.589778356 250.60763847 154.589778356</Geometry>
+        <Geometry x:Key="DGeometry.Triangle">M250.60763847 154.589778356C250.60763847 154.589778356 238.425614912 154.597364636 238.425614912 154.597364636C238.425614912 154.597364636 244.510053352 144.043623647 244.510053352 144.043623647C244.510053352 144.043623647 250.60763847 154.589778356 250.60763847 154.589778356z</Geometry>
     </UserControl.Resources>
 
-    <Grid Height="{Binding Height}" RenderTransformOrigin="0.5,1">
+    <Grid x:Name="ElectrodeMainGrid" Height="{Binding Height}" RenderTransformOrigin="0.5,1">
         <Grid.RenderTransform>
             <RotateTransform Angle="{Binding Angle}"/>
         </Grid.RenderTransform>
@@ -75,23 +75,25 @@
         <Border 
             x:Name="RectangleIndicatorBorder"
             Grid.Row="0" 
-            Margin="0,0,0,10"
-            Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.1}" 
-            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:PercentageConverter}, ConverterParameter=0.25}"
+            Margin="0,0,0,3"
+            Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}" 
+            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
             Background="{StaticResource DBrush.Indicator}"
             Visibility="{Binding OrientationMarker, Converter={converters:EnumToVisibilityConverter}, ConverterParameter='Rectangle'}"/>
         <Border 
             x:Name="TriangleIndicatorBorder" 
             Grid.Row="0"
-            Margin="0,0,0,10"
-            Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.2}" 
-            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.2}" 
-            Visibility="{Binding OrientationMarker, Converter={converters:EnumToVisibilityConverter}, ConverterParameter='SolidTriangle;OutlineTriangle'}">
+            Margin="0,0,0,4"
+            HorizontalAlignment="Center"
+            Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.25}" 
+            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.25}" 
+            Visibility="{Binding OrientationMarker, Converter={converters:EnumToVisibilityConverter}, ConverterParameter='#SolidTriangle;OutlineTriangle'}">
             <Path
                 x:Name="TrianglePath"
                 Data="{StaticResource DGeometry.Triangle}"
                 Stretch="Uniform"
-                Stroke="{StaticResource DBrush.Indicator}">
+                Stroke="{StaticResource DBrush.Indicator}"
+                StrokeLineJoin="Round">
                 <Path.Style>
                     <Style TargetType="{x:Type Path}">
                         <Style.Triggers>
@@ -112,7 +114,7 @@
             <Path
                 x:Name="HaloPath"
                 Data="{StaticResource DGeometry.Halo}"
-                Stretch="Uniform"
+                Stretch="UniformToFill"
                 Fill="{StaticResource DBrush.Halo}"
                 Visibility="{Binding MeetsAlignmentCriteria, Converter={converters:BoolToVisibilityConverter}, ConverterParameter='Hidden'}"/>
         </Border>
@@ -171,11 +173,16 @@
         <TextBlock 
             x:Name="Number" 
             Grid.Row="1"
+            Margin="0,2,0,0"
             Text="{Binding Number}" 
             FontSize="{Binding NumberFontSize}" 
             FontFamily="{StaticResource DFontFamily.Regular}" 
             FontWeight="SemiBold"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Center"
+            RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+            </TextBlock.RenderTransform>
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Foreground" Value="White"/>
@@ -187,18 +194,21 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Border x:Name="PosteriorBorder" Grid.Row="2" Height="{Binding IndicatorHeight}">
+        <Border 
+            x:Name="PosteriorBorder" 
+            Grid.Row="2" 
+            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
+            RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+            </Border.RenderTransform>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding AblationState}" Value="After"/>
-                                <Condition Binding="{Binding IsPosterior}" Value="True"/>
-                            </MultiDataTrigger.Conditions>
+                        <DataTrigger Binding="{Binding IsPosterior}" Value="True">
                             <Setter Property="Visibility" Value="Visible"/>
-                        </MultiDataTrigger>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
@@ -211,9 +221,13 @@
         <Border 
             x:Name="MultipleActivationsBorder" 
             Grid.Row="3" 
-            Height="{Binding IndicatorHeight}" 
+            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.26}"
             VerticalAlignment="Top" 
-            Margin="0,2,0,0">
+            Margin="0,2,0,0"
+            RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+            </Border.RenderTransform>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="Visibility" Value="Collapsed"/>
