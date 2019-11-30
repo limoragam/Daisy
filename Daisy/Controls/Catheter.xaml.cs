@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Daisy.ViewModels;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Daisy.Controls
 {
@@ -11,5 +13,17 @@ namespace Daisy.Controls
         {
             InitializeComponent();
         }
+
+        public double Radius
+        {
+            get { return (double)GetValue(RadiusProperty); }
+            set { SetValue(RadiusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Radius.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RadiusProperty =
+            DependencyProperty.Register("Radius", typeof(double), typeof(Catheter), new PropertyMetadata(0.0));
+
+
     }
 }

@@ -9,9 +9,16 @@
         mc:Ignorable="d"
         Title="Daisy"
         Height="450" 
-        Width="800">
+        Width="1000">
     
     <Grid>
-        <controls:Catheter x:Name="Catheter" Height="100" Width="100"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <controls:Catheter x:Name="Catheter1" Grid.Column="0" Radius="150"/>
+        <controls:Catheter x:Name="Catheter2" Grid.Column="1" Radius="150"/>
+        <controls:Catheter x:Name="Catheter3" Grid.Column="2" Radius="110"/>
     </Grid>
 </Window>

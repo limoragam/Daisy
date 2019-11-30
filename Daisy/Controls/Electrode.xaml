@@ -67,7 +67,7 @@
             <RotateTransform Angle="{Binding Angle}"/>
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.4}"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -75,15 +75,15 @@
         <Border 
             x:Name="RectangleIndicatorBorder"
             Grid.Row="0" 
-            Margin="0,0,0,3"
+            VerticalAlignment="Top"
             Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}" 
             Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
             Background="{StaticResource DBrush.Indicator}"
             Visibility="{Binding OrientationMarker, Converter={converters:EnumToVisibilityConverter}, ConverterParameter='Rectangle'}"/>
-        <Border 
+        <Border
             x:Name="TriangleIndicatorBorder" 
             Grid.Row="0"
-            Margin="0,0,0,4"
+            VerticalAlignment="Top"
             HorizontalAlignment="Center"
             Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.25}" 
             Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.25}" 
@@ -115,8 +115,22 @@
                 x:Name="HaloPath"
                 Data="{StaticResource DGeometry.Halo}"
                 Stretch="UniformToFill"
-                Fill="{StaticResource DBrush.Halo}"
-                Visibility="{Binding MeetsAlignmentCriteria, Converter={converters:BoolToVisibilityConverter}, ConverterParameter='Hidden'}"/>
+                Fill="{StaticResource DBrush.Halo}">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding MeetsAlignmentCriteria}" Value="True"/>
+                                    <Condition Binding="{Binding AblationPhase}" Value="Before"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
         </Border>
         <Border x:Name="ElectrodeBorder" 
             Grid.Row="1"
@@ -132,32 +146,36 @@
                     <Style TargetType="{x:Type Path}">
                         <Setter Property="StrokeThickness" Value="0"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding MeetsAlignmentCriteria}" Value="True">
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding MeetsAlignmentCriteria}" Value="True"/>
+                                    <Condition Binding="{Binding AblationPhase}" Value="Before"/>
+                                </MultiDataTrigger.Conditions>
                                 <Setter Property="StrokeThickness" Value="2"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding AblationState}" Value="Before">
+                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding AblationPhase}" Value="Before">
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.Before}"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding AblationState}" Value="During">
+                            <DataTrigger Binding="{Binding AblationPhase}" Value="During">
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.During}"/>
                             </DataTrigger>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationState}" Value="After"/>
+                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                     <Condition Binding="{Binding AblationResult}" Value="Light"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Light}"/>
                             </MultiDataTrigger>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationState}" Value="After"/>
+                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                     <Condition Binding="{Binding AblationResult}" Value="Medium"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Medium}"/>
                             </MultiDataTrigger>
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationState}" Value="After"/>
+                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                     <Condition Binding="{Binding AblationResult}" Value="Heavy"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Heavy}"/>
@@ -173,7 +191,7 @@
         <TextBlock 
             x:Name="Number" 
             Grid.Row="1"
-            Margin="0,2,0,0"
+            Margin="0,4,0,0"
             Text="{Binding Number}" 
             FontSize="{Binding NumberFontSize}" 
             FontFamily="{StaticResource DFontFamily.Regular}" 
@@ -187,7 +205,7 @@
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Foreground" Value="White"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding AblationState}" Value="Before">
+                        <DataTrigger Binding="{Binding AblationPhase}" Value="Before">
                             <Setter Property="Foreground" Value="Black"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -234,7 +252,7 @@
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding AblationState}" Value="After"/>
+                                <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                 <Condition Binding="{Binding IsPosterior}" Value="True"/>
                                 <Condition Binding="{Binding NumberOfActivations}" Value="2"/>
                             </MultiDataTrigger.Conditions>

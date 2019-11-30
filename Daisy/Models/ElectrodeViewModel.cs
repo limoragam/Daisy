@@ -47,13 +47,13 @@ namespace Daisy.ViewModels
         }
 
 
-        private EAblationState _ablationState = EAblationState.Before;
-        public EAblationState AblationState
+        private EAblationPhase _ablationPhase = EAblationPhase.Before;
+        public EAblationPhase AblationPhase
         {
-            get { return _ablationState; }
+            get { return _ablationPhase; }
             set 
             { 
-                _ablationState = value;
+                _ablationPhase = value;
                 NotifyPropertyChanged();
             }
         }
@@ -107,7 +107,7 @@ namespace Daisy.ViewModels
         #endregion
     }
 
-    public enum EAblationState
+    public enum EAblationPhase
     {
         Before,
         During,

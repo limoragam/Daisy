@@ -7,7 +7,6 @@ using System.Windows.Data;
 namespace Daisy.Converters
 {
     // Returns a percentage of input length/number
-    [ValueConversion(typeof(string), typeof(string))]
     public class PercentageConverter : ConverterMarkupExtension<PercentageConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -22,7 +21,6 @@ namespace Daisy.Converters
             throw new NotImplementedException();
         }
     }
-
 
     public class BoolToVisibilityConverter : ConverterMarkupExtension<BoolToVisibilityConverter>
     {
