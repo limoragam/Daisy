@@ -8,10 +8,12 @@
 
     <UserControl.Resources>
         <Color x:Key="DColor.ElectrodeBorder">#FF89761a</Color>
-        <Color x:Key="DColor.Indicator">#FFc4c4c4</Color>
+        <Color x:Key="DColor.OrientationMarker">#FFc4c4c4</Color>
+        <Color x:Key="DColor.Foreground">#ff111111</Color>
 
         <SolidColorBrush x:Key="DBrush.ElectrodeBorder" Color="{StaticResource DColor.ElectrodeBorder}"/>
-        <SolidColorBrush x:Key="DBrush.Indicator" Color="{StaticResource DColor.Indicator}"/>
+        <SolidColorBrush x:Key="DBrush.OrientationMarker" Color="{StaticResource DColor.OrientationMarker}"/>
+        <SolidColorBrush x:Key="DBrush.Foreground" Color="{StaticResource DColor.Foreground}"/>
 
         <LinearGradientBrush x:Key="DBrush.Electrode.Before" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Color="#ff998213" Offset="0.0"/>
@@ -57,9 +59,26 @@
 
         <Geometry x:Key="DGeometry.Halo">m 34.634301,4.7720815 c 1.42573,3.661823 1.34898,8.5702585 -3.33357,20.8649605 -4.25218,11.16472 -6.35335,18.98569 -9.29428,22.45703 -0.64828,0.76518 -2.43422,1.99714 -4.25873,1.99714 -1.82451,0 -3.61045,-1.23196 -4.25873,-1.99714 C 10.548061,44.622732 8.4468907,36.801762 4.1947107,25.637042 -0.48783929,13.34234 -0.56458929,8.4339045 0.86114071,4.7720815 2.6947907,-0.13273747 12.896881,0.22082653 17.747721,0.22082653 c 4.85084,0 15.05293,-0.353564 16.88658,4.55125497z</Geometry>
         <Geometry x:Key="DGeometry.Electrode">m 15.998464,44.616495 c 2.315339,-3.158066 5.293319,-12.276423 8.53508,-21.428539 3.923559,-11.076949 3.938849,-14.7832718 2.816399,-18.1146329 -1.814249,-5.38461413 -9.48875,-4.84267513 -13.32946,-4.84267513 -3.840709,0 -11.5152097,-0.541939 -13.32945968,4.84267513 -1.1224501,3.3313611 -1.1071601,7.0376839 2.81639998,18.1146329 3.2417602,9.152116 6.2197402,18.270473 8.5350797,21.428539 0.510381,0.696135 1.3472,0.98397 1.97798,0.98397 0.63078,0 1.4676,-0.287835 1.977981,-0.98397z</Geometry>
-        <Geometry x:Key="DGeometry.Posterior">m 272.52281,233.05596 c -3.507,0 -6.35,2.84299 -6.35,6.35 0,3.50701 2.843,6.35 6.35,6.35 3.507,0 6.35,-2.84299 6.35,-6.35 0,-3.50701 -2.843,-6.35 -6.35,-6.35 z m -2.80448,2.80035 h 2.61226 c 1.13331,0 1.98096,0.1977 2.54349,0.59376 0.56668,0.39606 0.85008,0.97989 0.85008,1.7508 0,0.8098 -0.31025,1.42996 -0.9307,1.86138 -0.62042,0.43143 -1.50318,0.64751 -2.64893,0.64751 h -0.94308 v 2.90111 h -1.48312 z m 1.48312,1.14744 v 2.57464 h 0.78806 c 0.76108,0 1.31911,-0.0479 1.67484,-0.27423 0.35571,-0.22632 0.66437,-0.57999 0.66437,-1.06092 0,-0.44557 -0.29006,-0.77811 -0.60857,-0.99735 -0.31848,-0.21925 -0.8146,-0.24214 -1.48878,-0.24214 z</Geometry>
-        <Geometry x:Key="DGeometry.MultipleActivations">m 359.06235,172.04663 c -3.507,0 -6.35,2.84299 -6.35,6.35 0,3.50701 2.843,6.35 6.35,6.35 3.507,0 6.35,-2.84299 6.35,-6.35 0,-3.50701 -2.843,-6.35 -6.35,-6.35 z m -0.96477,3.24838 h 1.92958 v 2.13682 h 2.13736 v 1.9296 h -2.13736 v 2.13734 h -1.92958 v -2.13734 h -2.13683 v -1.9296 h 2.13683 z</Geometry>
+        <Geometry x:Key="DGeometry.Posterior">m 1.8030324,279.7315 v 2.20471 h 0.3535579 c 0.8590381,0.0372 1.6083173,-0.34864 1.6226143,-1.14718 -0.076559,-0.89758 -0.7888843,-1.05783 -1.4548508,-1.05753 H 1.8030324 M 0,278.34166 h 2.4227749 c 1.5928965,-0.0254 2.8811467,0.941 2.8988178,2.39987 -0.074751,1.88419 -1.8385053,2.55885 -3.0892578,2.56808 H 1.8030323 v 2.44038 H 0 Z</Geometry>
+        <Geometry x:Key="DGeometry.MultipleActivations">m 2.13683,279.54623 h 1.92958 v 2.13682 h 2.13736 v 1.9296 H 4.06641 v 2.13734 H 2.13683 v -2.13734 H 0 v -1.9296 h 2.13683 z</Geometry>
         <Geometry x:Key="DGeometry.Triangle">M250.60763847 154.589778356C250.60763847 154.589778356 238.425614912 154.597364636 238.425614912 154.597364636C238.425614912 154.597364636 244.510053352 144.043623647 244.510053352 144.043623647C244.510053352 144.043623647 250.60763847 154.589778356 250.60763847 154.589778356z</Geometry>
+
+        <Style x:Key="DStyle.TextBlock" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="{StaticResource DFontFamily.Regular}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DStyle.Border.Indicator" TargetType="{x:Type Border}">
+            <Setter Property="Height" Value="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
+            <Setter Property="Width" Value="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="CornerRadius" Value="300"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource DBrush.Foreground}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        </Style>
     </UserControl.Resources>
 
     <Grid x:Name="ElectrodeMainGrid" Height="{Binding Height}" RenderTransformOrigin="0.5,1">
@@ -67,21 +86,19 @@
             <RotateTransform Angle="{Binding Angle}"/>
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
-            <RowDefinition Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.4}"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition x:Name="IndicatorRow" Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.4}"/>
+            <RowDefinition x:Name="NumberRow" Height="Auto"/>
+            <RowDefinition x:Name="PosteriorRow" Height="Auto"/>
+            <RowDefinition x:Name="MultipleActivationsRow"/>
         </Grid.RowDefinitions>
-        <Border 
-            x:Name="RectangleIndicatorBorder"
+        <Border x:Name="RectangleIndicatorBorder"
             Grid.Row="0" 
             VerticalAlignment="Top"
             Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}" 
             Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
-            Background="{StaticResource DBrush.Indicator}"
+            Background="{StaticResource DBrush.OrientationMarker}"
             Visibility="{Binding OrientationMarker, Converter={converters:EnumToVisibilityConverter}, ConverterParameter='Rectangle'}"/>
-        <Border
-            x:Name="TriangleIndicatorBorder" 
+        <Border x:Name="TriangleIndicatorBorder" 
             Grid.Row="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Center"
@@ -92,13 +109,13 @@
                 x:Name="TrianglePath"
                 Data="{StaticResource DGeometry.Triangle}"
                 Stretch="Uniform"
-                Stroke="{StaticResource DBrush.Indicator}"
+                Stroke="{StaticResource DBrush.OrientationMarker}"
                 StrokeLineJoin="Round">
                 <Path.Style>
                     <Style TargetType="{x:Type Path}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding OrientationMarker}" Value="SolidTriangle">
-                                <Setter Property="Fill" Value="{StaticResource DBrush.Indicator}"/>
+                                <Setter Property="Fill" Value="{StaticResource DBrush.OrientationMarker}"/>
                                 <Setter Property="StrokeThickness" Value="0"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding OrientationMarker}" Value="OutlineTriangle">
@@ -188,40 +205,32 @@
                 </Path.Style>
             </Path>
         </Border>
-        <TextBlock 
-            x:Name="Number" 
+        <TextBlock x:Name="Number" 
             Grid.Row="1"
-            Margin="0,4,0,0"
+            Margin="0,6,0,0"
             Text="{Binding Number}" 
-            FontSize="{Binding NumberFontSize}" 
-            FontFamily="{StaticResource DFontFamily.Regular}" 
-            FontWeight="SemiBold"
-            HorizontalAlignment="Center"
+            FontSize="{Binding TextFontSize}" 
             RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </TextBlock.RenderTransform>
             <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
+                <Style BasedOn="{StaticResource DStyle.TextBlock}" TargetType="{x:Type TextBlock}">
                     <Setter Property="Foreground" Value="White"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding AblationPhase}" Value="Before">
-                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Foreground" Value="{StaticResource DBrush.Foreground}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <Border 
-            x:Name="PosteriorBorder" 
-            Grid.Row="2" 
-            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
-            RenderTransformOrigin="0.5,0.5">
+        <Border x:Name="PosteriorBorder" Grid.Row="2" Margin="0,3" Padding="3">
             <Border.RenderTransform>
                 <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </Border.RenderTransform>
             <Border.Style>
-                <Style TargetType="{x:Type Border}">
+                <Style BasedOn="{StaticResource DStyle.Border.Indicator}" TargetType="{x:Type Border}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsPosterior}" Value="True">
@@ -234,20 +243,18 @@
                 x:Name="PosteriorPath"
                 Data="{StaticResource DGeometry.Posterior}"
                 Stretch="Uniform"
-                Fill="Black"/>
+                Fill="{StaticResource DBrush.Foreground}"/>
         </Border>
-        <Border 
-            x:Name="MultipleActivationsBorder" 
+        <Border x:Name="MultipleActivationsBorder" 
             Grid.Row="3" 
-            Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.26}"
             VerticalAlignment="Top" 
-            Margin="0,2,0,0"
-            RenderTransformOrigin="0.5,0.5">
+            Margin="0,4,0,-2"
+            Padding="3.5">
             <Border.RenderTransform>
                 <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </Border.RenderTransform>
             <Border.Style>
-                <Style TargetType="{x:Type Border}">
+                <Style BasedOn="{StaticResource DStyle.Border.Indicator}" TargetType="{x:Type Border}">
                     <Setter Property="Visibility" Value="Collapsed"/>
                     <Style.Triggers>
                         <MultiDataTrigger>
@@ -265,7 +272,7 @@
                 x:Name="MultipleActivationsPath"
                 Data="{StaticResource DGeometry.MultipleActivations}"
                 Stretch="Uniform"
-                Fill="Black"/>
+                Fill="{StaticResource DBrush.Foreground}"/>
         </Border>
     </Grid>
 </UserControl>

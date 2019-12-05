@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Daisy.Enums;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using Daisy.Enums;
 
 namespace Daisy.ViewModels
 {
@@ -89,11 +89,11 @@ namespace Daisy.ViewModels
 
         public double Height { get; set; }
 
-        public int NumberFontSize
+        public int TextFontSize
         {
             get
             {
-                int fontSize = 13;
+                int fontSize = 15;
                 int height = (int)Height - 80;
                 while (height > 20)
                 {
@@ -105,27 +105,5 @@ namespace Daisy.ViewModels
         }
 
         #endregion
-    }
-
-    public enum EAblationPhase
-    {
-        Before,
-        During,
-        After
-    }
-
-    public enum EOrientationMarker
-    {
-        None,
-        Rectangle,
-        SolidTriangle,
-        OutlineTriangle
-    }
-
-    public enum EAblationResult
-    {
-        Light,
-        Medium,
-        Heavy
     }
 }

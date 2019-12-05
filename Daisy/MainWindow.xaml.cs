@@ -1,4 +1,5 @@
-﻿using Daisy.ViewModels;
+﻿using Daisy.Enums;
+using Daisy.ViewModels;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -24,7 +25,7 @@ namespace Daisy
             Catheter1.DataContext = catheterViewModel1;
 
             List<int> posteriorElectrodes2 = new List<int> { 11, 12 };
-            var catheterViewModel2 = new CatheterViewModel(12, posteriorElectrodes2, Catheter2.Radius);
+            var catheterViewModel2 = new CatheterViewModel(10, posteriorElectrodes2, Catheter2.Radius);
             List<int> electrodesMeetingCriteriaAdequacy2 = new List<int> { 9, 10, 11, 12 };
             catheterViewModel2.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy2, true);
             catheterViewModel2.SetAblationPhase(EAblationPhase.During);
@@ -32,7 +33,7 @@ namespace Daisy
             Catheter2.DataContext = catheterViewModel2;
 
             List<int> posteriorElectrodes3 = new List<int> { 1, 4, 5, 6 };
-            var catheterViewModel3 = new CatheterViewModel(9, posteriorElectrodes3, Catheter3.Radius);
+            var catheterViewModel3 = new CatheterViewModel(10, posteriorElectrodes3, Catheter3.Radius);
             List<int> electrodesMeetingCriteriaAdequacy3 = new List<int> { 4, 6, 7 };
             catheterViewModel3.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy3, true);
             catheterViewModel3.SetAblationPhase(EAblationPhase.After);
@@ -48,7 +49,7 @@ namespace Daisy
                                             EAblationResult.Light,
                                             EAblationResult.Light});
             catheterViewModel3.SetElectrodeNumberOfActivations(4, 2);
-            catheterViewModel3.SetElectrodeNumberOfActivations(5, 2);
+            catheterViewModel3.SetElectrodeNumberOfActivations(6, 2);
             Catheter3.DataContext = catheterViewModel3;
         }
     }

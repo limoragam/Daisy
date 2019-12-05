@@ -9,9 +9,6 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <!--<Style TargetType="{x:Type controls:Catheter}">
-            <Setter Property="Radius" Value="{Binding Radius, Mode=TwoWay}"/>
-        </Style>-->
         <SolidColorBrush x:Key="DBrush.BackgroundCircle" Color="#ff2e2e2e"/>
         <Geometry x:Key="DGeometry.OrientationLine">m 27.748667,292.9224 c -8.79404,0 -17.25345,1.43276 -25.1575194,4.07757 -3.28062102,-1.01451 -2.93656902,-2.79487 -1.73989302,-4.83285 8.44766202,-2.8397 17.49282242,-4.37859 26.89742242,-4.37859 9.40459,0 18.44975,1.53889 26.89741,4.37859 1.19667,2.03798 1.54073,3.81834 -1.73989,4.83285 -7.90407,-2.64481 -16.36348,-4.07757 -25.15753,-4.07757 z</Geometry>
 

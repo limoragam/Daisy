@@ -19,6 +19,6 @@
         </Grid.ColumnDefinitions>
         <controls:Catheter x:Name="Catheter1" Grid.Column="0" Radius="150"/>
         <controls:Catheter x:Name="Catheter2" Grid.Column="1" Radius="150"/>
-        <controls:Catheter x:Name="Catheter3" Grid.Column="2" Radius="110"/>
+        <controls:Catheter x:Name="Catheter3" Grid.Column="2" Radius="150"/>
     </Grid>
 </Window>

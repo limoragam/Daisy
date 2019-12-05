@@ -1,7 +1,6 @@
 ﻿<Application x:Class="Daisy.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Daisy"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="DFontFamily.Regular">pack://application:,,,/fonts/#Open Sans</FontFamily>

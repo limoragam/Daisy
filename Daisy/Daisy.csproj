@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\Enums.cs" />
     <Page Include="Controls\Catheter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,9 +73,9 @@
     </Compile>
     <Compile Include="Controls\CircularPanel.cs" />
     <Compile Include="Models\CatheterViewModel.cs" />
-    <Compile Include="Converters\ConverterMarkupExtension.cs" />
-    <Compile Include="Converters\Converters.cs" />
-    <Compile Include="Converters\EnumConverters.cs" />
+    <Compile Include="Services\ConverterMarkupExtension.cs" />
+    <Compile Include="Services\Converters.cs" />
+    <Compile Include="Services\EnumConverters.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
