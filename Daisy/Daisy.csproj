@@ -55,8 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\OrientationLine.xaml.cs">
+      <DependentUpon>OrientationLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrientationLineModel.cs" />
+    <Compile Include="Services\VisibilityConverters.cs" />
     <Compile Include="Services\Enums.cs" />
     <Page Include="Controls\Catheter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OrientationLine.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,7 +83,7 @@
     <Compile Include="Controls\CircularPanel.cs" />
     <Compile Include="Models\CatheterViewModel.cs" />
     <Compile Include="Services\ConverterMarkupExtension.cs" />
-    <Compile Include="Services\Converters.cs" />
+    <Compile Include="Services\MathConverters.cs" />
     <Compile Include="Services\EnumConverters.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:Daisy.Converters"
+             x:Name="_this"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -81,19 +82,20 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid x:Name="ElectrodeMainGrid" Height="{Binding Height}" RenderTransformOrigin="0.5,1">
+    <Grid x:Name="ElectrodeMainGrid" Width="{Binding Path=Width, ElementName=_this}" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
-            <RotateTransform Angle="{Binding Angle}"/>
+            <RotateTransform Angle="{Binding Angle, ElementName=_this}"/>
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="IndicatorRow" Height="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.4}"/>
+            <RowDefinition x:Name="IndicatorRow" Height="{Binding RimThickness, ElementName=_this}"/>
             <RowDefinition x:Name="NumberRow" Height="Auto"/>
             <RowDefinition x:Name="PosteriorRow" Height="Auto"/>
             <RowDefinition x:Name="MultipleActivationsRow"/>
         </Grid.RowDefinitions>
         <Border x:Name="RectangleIndicatorBorder"
-            Grid.Row="0" 
-            VerticalAlignment="Top"
+            Grid.Row="0"
+            Margin="0,0,0,6"
+            VerticalAlignment="Center"
             Width="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.3}" 
             Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={converters:PercentageConverter}, ConverterParameter=0.3}"
             Background="{StaticResource DBrush.OrientationMarker}"
@@ -209,10 +211,10 @@
             Grid.Row="1"
             Margin="0,6,0,0"
             Text="{Binding Number}" 
-            FontSize="{Binding TextFontSize}" 
+            FontSize="{Binding Path=ActualHeight, ElementName=HaloBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.2}" 
             RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
-                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+                <RotateTransform Angle="{Binding Angle, ElementName=_this, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </TextBlock.RenderTransform>
             <TextBlock.Style>
                 <Style BasedOn="{StaticResource DStyle.TextBlock}" TargetType="{x:Type TextBlock}">
@@ -227,7 +229,7 @@
         </TextBlock>
         <Border x:Name="PosteriorBorder" Grid.Row="2" Margin="0,3" Padding="3">
             <Border.RenderTransform>
-                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+                <RotateTransform Angle="{Binding Angle, ElementName=_this, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </Border.RenderTransform>
             <Border.Style>
                 <Style BasedOn="{StaticResource DStyle.Border.Indicator}" TargetType="{x:Type Border}">
@@ -251,7 +253,7 @@
             Margin="0,4,0,-2"
             Padding="3.5">
             <Border.RenderTransform>
-                <RotateTransform Angle="{Binding Angle, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
+                <RotateTransform Angle="{Binding Angle, ElementName=_this, Converter={converters:PercentageConverter}, ConverterParameter=-1.0}"/>
             </Border.RenderTransform>
             <Border.Style>
                 <Style BasedOn="{StaticResource DStyle.Border.Indicator}" TargetType="{x:Type Border}">
@@ -261,7 +263,7 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                 <Condition Binding="{Binding IsPosterior}" Value="True"/>
-                                <Condition Binding="{Binding NumberOfActivations}" Value="2"/>
+                                <Condition Binding="{Binding NumberOfActivations, Converter={converters:MoreThanConverter}, ConverterParameter=1}" Value="True"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>

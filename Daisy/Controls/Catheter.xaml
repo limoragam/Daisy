@@ -5,57 +5,58 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Daisy.Controls"
              xmlns:converters="clr-namespace:Daisy.Converters"
-             x:Name="_this"
+             x:Name="_this1"
              mc:Ignorable="d">
 
     <UserControl.Resources>
         <SolidColorBrush x:Key="DBrush.BackgroundCircle" Color="#ff2e2e2e"/>
-        <Geometry x:Key="DGeometry.OrientationLine">m 27.748667,292.9224 c -8.79404,0 -17.25345,1.43276 -25.1575194,4.07757 -3.28062102,-1.01451 -2.93656902,-2.79487 -1.73989302,-4.83285 8.44766202,-2.8397 17.49282242,-4.37859 26.89742242,-4.37859 9.40459,0 18.44975,1.53889 26.89741,4.37859 1.19667,2.03798 1.54073,3.81834 -1.73989,4.83285 -7.90407,-2.64481 -16.36348,-4.07757 -25.15753,-4.07757 z</Geometry>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.North" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#ff0000b6" Offset="0.0"/>
-            <GradientStop Color="#ff0000fd" Offset="0.25"/>
-            <GradientStop Color="#ff0000fd" Offset="0.75"/>
-            <GradientStop Color="#ff0000b6" Offset="1.0"/>
+        <LinearGradientBrush x:Key="DBrush.Button.Background" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#ff999999" Offset="0.0"/>
+            <GradientStop Color="#ff3f3f3f" Offset="1.0"/>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.East" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#ff005610" Offset="0.0"/>
-            <GradientStop Color="#ff008f30" Offset="0.25"/>
-            <GradientStop Color="#ff008f30" Offset="0.75"/>
-            <GradientStop Color="#ff005610" Offset="1.0"/>
-        </LinearGradientBrush>
+        <Geometry x:Key="DGeometry.Play">m 0.13229166,275.81784 v 9.69346 l 7.53321004,-4.70825 z</Geometry>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.South" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#ff800000" Offset="0.0"/>
-            <GradientStop Color="#ffb70000" Offset="0.25"/>
-            <GradientStop Color="#ffb70000" Offset="0.75"/>
-            <GradientStop Color="#ff800000" Offset="1.0"/>
-        </LinearGradientBrush>
-
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.West" StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#ffb9b900" Offset="0.0"/>
-            <GradientStop Color="#ffffff00" Offset="0.25"/>
-            <GradientStop Color="#ffffff00" Offset="0.75"/>
-            <GradientStop Color="#ffb9b900" Offset="1.0"/>
-        </LinearGradientBrush>
+        <Style x:Key="DStyle.Button.Play" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{StaticResource DBrush.Button.Background}" CornerRadius="5" Padding="12">
+                            <Path Data="{StaticResource DGeometry.Play}" Fill="White" Stretch="Uniform"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
 
-    <Grid
+    <Grid x:Name="OuterGrid"
         VerticalAlignment="Center"
-        HorizontalAlignment="Center"
-        Height="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=2}" 
-        Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=2}">
+        HorizontalAlignment="Center" 
+        Width="{Binding Path=ActualWidth, ElementName=_this1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="{Binding Path=ActualWidth, ElementName=OuterGrid}"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Border 
+        <TextBlock Grid.Row="0" Text="{Binding AblationParamString}" FontSize="20" Foreground="White" HorizontalAlignment="Center"/>
+
+        <Border x:Name="BackCircle"
+            Grid.Row="1"
             Background="{StaticResource DBrush.BackgroundCircle}" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             CornerRadius="1000"
-            Height="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=1.74}" 
-            Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=1.74}"/>
+            Height="{Binding Path=ActualWidth, ElementName=_this1, Converter={converters:PercentageConverter}, ConverterParameter=0.83}" 
+            Width="{Binding Path=ActualWidth, ElementName=_this1, Converter={converters:PercentageConverter}, ConverterParameter=0.83}"/>
 
-        <ItemsControl ItemsSource="{Binding Electrodes}">
+        <ItemsControl 
+            Grid.Row="1"
+            ItemsSource="{Binding OrientationLines}" 
+            Height="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}" 
+            Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <controls:CircularPanel/>
@@ -63,69 +64,37 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <controls:Electrode/>
+                    <controls:OrientationLine Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Border
-            x:Name="OrientationLineBorderNorth" 
-            Margin="0,8,0,0"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Center">
-            <Path
-                Data="{StaticResource DGeometry.OrientationLine}"
-                Stretch="Uniform"
-                Fill="{StaticResource DBrush.OrientationLine.North}"
-                Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=0.6}"/>
-        </Border>
-        <Border
-            x:Name="OrientationLineBorderEast" 
-            Margin="0,0,-30,0"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <RotateTransform Angle="90"/>
-            </Border.RenderTransform>
-            <Path
-                Data="{StaticResource DGeometry.OrientationLine}"
-                Stretch="Uniform"
-                Fill="{StaticResource DBrush.OrientationLine.East}"
-                Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=0.6}">
-            </Path>
-        </Border>
-        <Border
-            x:Name="OrientationLineBorderSouth" 
-            Margin="0,0,0,8"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Center">
-            <Path
-                Data="{StaticResource DGeometry.OrientationLine}"
-                Stretch="Uniform"
-                Fill="{StaticResource DBrush.OrientationLine.South}"
-                Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=0.6}"
-                RenderTransformOrigin="0.5,0.5">
-                <Path.RenderTransform>
-                    <RotateTransform Angle="180"/>
-                </Path.RenderTransform>
-            </Path>
-        </Border>
-        <Border
-            x:Name="OrientationLineBorderWest" 
-            Margin="-30,0,0,0"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-            RenderTransformOrigin="0.5,0.5">
-            <Border.RenderTransform>
-                <RotateTransform Angle="270"/>
-            </Border.RenderTransform>
-            <Path
-                Data="{StaticResource DGeometry.OrientationLine}"
-                Stretch="Uniform"
-                Fill="{StaticResource DBrush.OrientationLine.West}"
-                Width="{Binding Radius, Converter={converters:PercentageConverter}, ConverterParameter=0.6}">
-            </Path>
-        </Border>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Electrodes}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:CircularPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:Electrode RimThickness="{Binding Path=ActualWidth, ElementName=_this1, Converter={converters:PercentageConverter}, ConverterParameter=0.085}">
+                        <controls:Electrode.Width>
+                            <MultiBinding Converter="{converters:NumberOfPieSlicesToChordConverter}">
+                                <Binding Path="ActualWidth" ElementName="BackCircle" Converter="{converters:PercentageConverter}" ConverterParameter="0.5"/>
+                                <Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
+                            </MultiBinding>
+                        </controls:Electrode.Width>
+                        <controls:Electrode.Angle>
+                            <MultiBinding Converter="{converters:PieSliceNumberToAngleConverter}">
+                                <Binding Path="Index"/>
+                                <Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
+                            </MultiBinding>
+                        </controls:Electrode.Angle>
+                    </controls:Electrode>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Button Grid.Row="2" Style="{StaticResource DStyle.Button.Play}" Height="40" Width="40" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

@@ -6,19 +6,22 @@ namespace Daisy.ViewModels
     {
         public ElectrodeViewModel(int number, 
                                   EOrientationMarker orientationMarker, 
-                                  bool isPosterior, 
-                                  double angle,
-                                  double height)
+                                  bool isPosterior)
         {
             Number = number;
             OrientationMarker = orientationMarker;
             IsPosterior = isPosterior;
-            Angle = angle;
-            Height = height;
         }
 
         #region Data
 
+        public int Index 
+        { 
+            get
+            {
+                return Number - 1;
+            }
+        }
         public int Number { get; set; } = 1;
         public EOrientationMarker OrientationMarker { get; set; }
         public bool IsPosterior { get; set; } = false;
@@ -77,30 +80,6 @@ namespace Daisy.ViewModels
             {
                 _ablationResult = value;
                 NotifyPropertyChanged();
-            }
-        }
-
-        #endregion
-
-
-        #region Visual
-
-        public double Angle { get; set; }
-
-        public double Height { get; set; }
-
-        public int TextFontSize
-        {
-            get
-            {
-                int fontSize = 15;
-                int height = (int)Height - 80;
-                while (height > 20)
-                {
-                    ++fontSize;
-                    height -= 20;
-                }
-                return fontSize;
             }
         }
 

@@ -21,4 +21,18 @@
         Medium,
         Heavy
     }
+
+    public enum EDirection
+    {
+        North,
+        East,
+        South,
+        West
+    }
+
+    public enum EAblationParam
+    {
+        ImpedanceDrop,
+        TemperatureRise
+    }
 }

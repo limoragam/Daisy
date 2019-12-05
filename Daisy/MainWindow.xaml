@@ -17,8 +17,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <controls:Catheter x:Name="Catheter1" Grid.Column="0" Radius="150"/>
-        <controls:Catheter x:Name="Catheter2" Grid.Column="1" Radius="150"/>
-        <controls:Catheter x:Name="Catheter3" Grid.Column="2" Radius="150"/>
+        <controls:Catheter x:Name="Catheter1" Grid.Column="0" Width="300"/>
+        <controls:Catheter x:Name="Catheter2" Grid.Column="1" Width="300"/>
+        <controls:Catheter x:Name="Catheter3" Grid.Column="2" Width="300"/>
     </Grid>
 </Window>

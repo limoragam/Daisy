@@ -8,12 +8,11 @@ namespace Daisy.ViewModels
 {
     public class CatheterViewModel : ViewModelBase
     {
-        public CatheterViewModel(int numberOfElectrodes, List<int> posteriorElectrodes, double radius)
+        public CatheterViewModel(int numberOfElectrodes, List<int> posteriorElectrodes)
         {
             NumberOfElectrodes = numberOfElectrodes;
             PosteriorElectrodes = posteriorElectrodes;
-            Radius = radius;
-            CalculateOrientationLine();
+            InitOrientationLines();
         }
 
         #region Catheter Characteristics
@@ -41,18 +40,6 @@ namespace Daisy.ViewModels
             }
         }
 
-        private double _radius;
-        public double Radius
-        {
-            get { return _radius; }
-            set 
-            { 
-                _radius = value;
-                InitElectrodes();
-                NotifyPropertyChanged();
-            }
-        }
-
         public void SetAblationPhase(EAblationPhase ablationPhase)
         {
             foreach (var electrode in Electrodes)
@@ -69,18 +56,16 @@ namespace Daisy.ViewModels
 
         public void InitElectrodes()
         {
-            if (NumberOfElectrodes < 3 || PosteriorElectrodes == null || Radius <= 0)
+            if (NumberOfElectrodes < 3 || PosteriorElectrodes == null)
                 return;
 
             int solidTriangleMarkerPosition = NumberOfElectrodes / 3;
             int outlineTriangleMarkerPosition = (NumberOfElectrodes * 2) / 3;
             var electrodes = new ObservableCollection<ElectrodeViewModel>();
-            double height = CalculateElectrodeHeight(NumberOfElectrodes);
 
             for (int i = 0; i < NumberOfElectrodes; i++)
             {
                 int number = i + 1;
-                double angle = 360.0 * i / NumberOfElectrodes;
 
                 EOrientationMarker orientationMarker = EOrientationMarker.None;
                 if (i == 0)
@@ -98,23 +83,13 @@ namespace Daisy.ViewModels
 
                 bool isPosterior = PosteriorElectrodes.Contains(number);
 
-                electrodes.Add(new ElectrodeViewModel(number, orientationMarker, isPosterior, angle, height));
+                electrodes.Add(new ElectrodeViewModel(number, orientationMarker, isPosterior));
             }
 
             Electrodes = electrodes;
             NotifyPropertyChanged(nameof(Electrodes));
         }
 
-        private double CalculateElectrodeHeight(int numberOfElectrodes)
-        {
-            if (numberOfElectrodes < 3)
-                return 0;
-
-            double internalRadius = Radius * 0.67;  // Use a smaller circle to calculate height
-            double thetaRad = 2 * Math.PI / numberOfElectrodes;  // Pie section
-            double height = Math.Abs((int)(Math.Cos(thetaRad / 2) * internalRadius));   // Pie triangle height
-            return height;
-        }
         #endregion
 
 
@@ -223,6 +198,35 @@ namespace Daisy.ViewModels
 
         #region Electrode Ablation Result
 
+        public string AblationParamString 
+        { 
+            get
+            {
+                switch (AblationParam)
+                {
+                    case EAblationParam.ImpedanceDrop:
+                        return "Impedance Drop";
+                    case EAblationParam.TemperatureRise:
+                        return "Temperature Rise";
+                    default:
+                        break;
+                }
+                return string.Empty;
+            }
+        }
+
+        private EAblationParam eAblationParam = EAblationParam.ImpedanceDrop;
+        public EAblationParam AblationParam
+        {
+            get { return eAblationParam; }
+            set 
+            { 
+                eAblationParam = value;
+                NotifyPropertyChanged(AblationParamString);
+            }
+        }
+
+
         public void SetElectrodeAblationResult(int electrodeNumber, EAblationResult ablationResult)
         {
             if (electrodeNumber < 1 || electrodeNumber > Electrodes.Count)
@@ -248,19 +252,19 @@ namespace Daisy.ViewModels
 
 
         #region Orientation Lines
-        public Size OrientationLineRadius { get; set; }
-        public Point OrientationLineStart { get; set; }
-        public Point OrientationLineEnd { get; set; }
+        public ObservableCollection<OrientationLineModel> OrientationLines { get; set; }
 
-        private void CalculateOrientationLine()
+        private void InitOrientationLines()
         {
-            if (Radius <= 0)
-                return;
+            var orientationLines = new ObservableCollection<OrientationLineModel>();
 
-            OrientationLineRadius = new Size(Radius, Radius);
-            double thetaRad = 2 * Math.PI / 9;  // Pie section
-            OrientationLineStart = new Point(-Radius * Math.Sin(thetaRad/2) + Radius, Radius * Math.Cos(thetaRad/2) - 0.8 * Radius);
-            OrientationLineEnd = new Point(Radius * Math.Sin(thetaRad/2) + Radius, OrientationLineStart.Y);
+            orientationLines.Add(new OrientationLineModel(EDirection.North));
+            orientationLines.Add(new OrientationLineModel(EDirection.East));
+            orientationLines.Add(new OrientationLineModel(EDirection.South));
+            orientationLines.Add(new OrientationLineModel(EDirection.West));
+
+            OrientationLines = orientationLines;
+            NotifyPropertyChanged(nameof(OrientationLines));
         }
         #endregion
     }
