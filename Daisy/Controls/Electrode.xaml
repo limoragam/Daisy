@@ -53,9 +53,9 @@
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="DBrush.Halo" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#ff939393" Offset="0.0"/>
-            <GradientStop Color="#ffbcbcbc" Offset="0.35"/>
-            <GradientStop Color="#ffe8e8e8" Offset="1.0"/>
+            <GradientStop Color="#ffa0a0a0" Offset="0.0"/>
+            <GradientStop Color="#ffe0e0e0" Offset="0.35"/>
+            <GradientStop Color="White" Offset="1.0"/>
         </LinearGradientBrush>
 
         <Geometry x:Key="DGeometry.Halo">m 34.634301,4.7720815 c 1.42573,3.661823 1.34898,8.5702585 -3.33357,20.8649605 -4.25218,11.16472 -6.35335,18.98569 -9.29428,22.45703 -0.64828,0.76518 -2.43422,1.99714 -4.25873,1.99714 -1.82451,0 -3.61045,-1.23196 -4.25873,-1.99714 C 10.548061,44.622732 8.4468907,36.801762 4.1947107,25.637042 -0.48783929,13.34234 -0.56458929,8.4339045 0.86114071,4.7720815 2.6947907,-0.13273747 12.896881,0.22082653 17.747721,0.22082653 c 4.85084,0 15.05293,-0.353564 16.88658,4.55125497z</Geometry>
@@ -72,7 +72,7 @@
         </Style>
 
         <Style x:Key="DStyle.Border.Indicator" TargetType="{x:Type Border}">
-            <Setter Property="Height" Value="{Binding ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
+            <Setter Property="Height" Value="{Binding Path=ActualWidth, ElementName=ElectrodeBorder, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
             <Setter Property="Width" Value="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"/>
             <Setter Property="CornerRadius" Value="300"/>
             <Setter Property="Background" Value="White"/>
@@ -169,6 +169,7 @@
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding MeetsAlignmentCriteria}" Value="True"/>
                                     <Condition Binding="{Binding AblationPhase}" Value="Before"/>
+                                    <Condition Binding="{Binding IsSelected}" Value="True"/>
                                 </MultiDataTrigger.Conditions>
                                 <Setter Property="StrokeThickness" Value="2"/>
                             </MultiDataTrigger>
