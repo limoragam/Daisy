@@ -13,8 +13,6 @@ namespace Daisy.ViewModels
             IsPosterior = isPosterior;
         }
 
-        #region Data
-
         public int Index 
         { 
             get
@@ -37,7 +35,6 @@ namespace Daisy.ViewModels
             }
         }
 
-
         private bool _isSelected = true;
         public bool IsSelected
         {
@@ -48,7 +45,6 @@ namespace Daisy.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
 
         private EAblationPhase _ablationPhase = EAblationPhase.Before;
         public EAblationPhase AblationPhase
@@ -72,17 +68,27 @@ namespace Daisy.ViewModels
             }
         }
 
-        private EAblationResult _ablationResult;
-        public EAblationResult AblationResult
+        private EAblationParam _ablationParam = EAblationParam.ImpedanceDrop;
+        public EAblationParam AblationParam
+        {
+            get { return _ablationParam; }
+            set 
+            { 
+                _ablationParam = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double _ablationResult;
+        public double AblationResult
         {
             get { return _ablationResult; }
-            set
-            {
+            set 
+            { 
                 _ablationResult = value;
                 NotifyPropertyChanged();
             }
         }
 
-        #endregion
     }
 }

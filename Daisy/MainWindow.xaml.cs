@@ -39,16 +39,9 @@ namespace Daisy
             catheterViewModel3.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy3, true);
             catheterViewModel3.SetAblationPhase(EAblationPhase.After);
             catheterViewModel3.SetElectrodeSelection(1, false);
-            catheterViewModel3.SetElectrodesAblationResult(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
-                new List<EAblationResult> { EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Medium,
-                                            EAblationResult.Light,
-                                            EAblationResult.Medium,
-                                            EAblationResult.Light,
-                                            EAblationResult.Light});
+            catheterViewModel3.SetElectrodesAblationResult(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new List<double> { 5, 15.2, 32.9, 19.1, 45, 25, 30, 38, 27.2, 19.8 });
+            //catheterViewModel3.AblationParam = EAblationParam.TemperatureRise;
+            //catheterViewModel3.SetElectrodesAblationResult(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new List<double> { 2, 5, 6, 7, 8, 9, 10, 8.5, 7.5, 6.5 });
             catheterViewModel3.SetElectrodeNumberOfActivations(4, 2);
             catheterViewModel3.SetElectrodeNumberOfActivations(6, 4);
             Catheter3.DataContext = catheterViewModel3;

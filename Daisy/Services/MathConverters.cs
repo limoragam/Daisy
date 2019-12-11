@@ -23,7 +23,7 @@ namespace Daisy.Converters
 
 
     // Is value more than param?
-    public class MoreThanConverter : ConverterMarkupExtension<MoreThanConverter>
+    public class GreaterThanConverter : ConverterMarkupExtension<GreaterThanConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

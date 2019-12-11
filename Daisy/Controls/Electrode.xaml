@@ -28,27 +28,9 @@
             <GradientStop Color="#ffe02400" Offset="1.0"/>
         </LinearGradientBrush>
         
-        <LinearGradientBrush x:Key="DBrush.Electrode.After.Light" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#ff9b7777" Offset="0.0"/>
-            <GradientStop Color="#ffc69494" Offset="0.25"/>
-            <GradientStop Color="#fff2b1b1" Offset="1.0"/>
-        </LinearGradientBrush>
-
-        <LinearGradientBrush x:Key="DBrush.Electrode.After.Medium" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#ff833838" Offset="0.0"/>
-            <GradientStop Color="#ffa73d3d" Offset="0.25"/>
-            <GradientStop Color="#ffcd4343" Offset="1.0"/>
-        </LinearGradientBrush>
-
-        <LinearGradientBrush x:Key="DBrush.Electrode.After.Heavy" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#ff701414" Offset="0.0"/>
-            <GradientStop Color="#ff920a0a" Offset="0.25"/>
-            <GradientStop Color="#ffb60000" Offset="1.0"/>
-        </LinearGradientBrush>
-
         <LinearGradientBrush x:Key="DBrush.Electrode.NotSelected" StartPoint="0,0" EndPoint="0,1">
-            <GradientStop Color="#ff4e4e4e" Offset="0.0"/>
-            <GradientStop Color="#ff5f5f5f" Offset="0.25"/>
+            <GradientStop Color="#ff424242" Offset="0.0"/>
+            <GradientStop Color="#ff5c5c5c" Offset="0.25"/>
             <GradientStop Color="#ff6c6c6c" Offset="1.0"/>
         </LinearGradientBrush>
 
@@ -179,27 +161,16 @@
                             <DataTrigger Binding="{Binding AblationPhase}" Value="During">
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.During}"/>
                             </DataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
-                                    <Condition Binding="{Binding AblationResult}" Value="Light"/>
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Light}"/>
-                            </MultiDataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
-                                    <Condition Binding="{Binding AblationResult}" Value="Medium"/>
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Medium}"/>
-                            </MultiDataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding AblationPhase}" Value="After"/>
-                                    <Condition Binding="{Binding AblationResult}" Value="Heavy"/>
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.After.Heavy}"/>
-                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding AblationPhase}" Value="After">
+                                <Setter Property="Fill">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{converters:AblationResultToGradientBrushConverter}">
+                                            <Binding Path="AblationResult"/>
+                                            <Binding Path="AblationParam"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
                             <DataTrigger Binding="{Binding IsSelected}" Value="False">
                                 <Setter Property="Fill" Value="{StaticResource DBrush.Electrode.NotSelected}"/>
                             </DataTrigger>
@@ -264,7 +235,7 @@
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding AblationPhase}" Value="After"/>
                                 <Condition Binding="{Binding IsPosterior}" Value="True"/>
-                                <Condition Binding="{Binding NumberOfActivations, Converter={converters:MoreThanConverter}, ConverterParameter=1}" Value="True"/>
+                                <Condition Binding="{Binding NumberOfActivations, Converter={converters:GreaterThanConverter}, ConverterParameter=1}" Value="True"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>

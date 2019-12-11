@@ -15,13 +15,6 @@
         OutlineTriangle
     }
 
-    public enum EAblationResult
-    {
-        Light,
-        Medium,
-        Heavy
-    }
-
     public enum EDirection
     {
         North,

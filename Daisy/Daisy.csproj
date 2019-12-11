@@ -59,6 +59,8 @@
       <DependentUpon>OrientationLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\OrientationLineModel.cs" />
+    <Compile Include="Services\Consts.cs" />
+    <Compile Include="Services\GraphicConverters.cs" />
     <Compile Include="Services\VisibilityConverters.cs" />
     <Compile Include="Services\Enums.cs" />
     <Page Include="Controls\Catheter.xaml">

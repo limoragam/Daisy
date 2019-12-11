@@ -222,20 +222,29 @@ namespace Daisy.ViewModels
             set 
             { 
                 eAblationParam = value;
+                SetElectrodeAblationParam();
                 NotifyPropertyChanged(AblationParamString);
             }
         }
 
+        private void SetElectrodeAblationParam()
+        {
+            foreach (var electrode in Electrodes)
+            {
+                electrode.AblationParam = AblationParam;
+            }
+        }
 
-        public void SetElectrodeAblationResult(int electrodeNumber, EAblationResult ablationResult)
+
+        public void SetElectrodeAblationResult(int electrodeNumber, double result)
         {
             if (electrodeNumber < 1 || electrodeNumber > Electrodes.Count)
                 return;
 
-            Electrodes[electrodeNumber - 1].AblationResult = ablationResult;
+            Electrodes[electrodeNumber - 1].AblationResult = result;
         }
 
-        public void SetElectrodesAblationResult(List<int> electrodeNumbers, List<EAblationResult> ablationResults)
+        public void SetElectrodesAblationResult(List<int> electrodeNumbers, List<double> ablationResults)
         {
             if (electrodeNumbers.Count != ablationResults.Count)
                 return;
