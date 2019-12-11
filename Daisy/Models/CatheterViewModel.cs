@@ -8,34 +8,21 @@ namespace Daisy.ViewModels
 {
     public class CatheterViewModel : ViewModelBase
     {
-        public CatheterViewModel(int numberOfElectrodes, List<int> posteriorElectrodes)
+        public CatheterViewModel(int numberOfElectrodes)
         {
             NumberOfElectrodes = numberOfElectrodes;
-            PosteriorElectrodes = posteriorElectrodes;
             InitOrientationLines();
         }
 
         #region Catheter Characteristics
 
         private int _numberOfElectrodes;
-
         public int NumberOfElectrodes
         {
             get { return _numberOfElectrodes; }
             set 
             { 
                 _numberOfElectrodes = value;
-                InitElectrodes();
-            }
-        }
-
-        private List<int> _posteriorElectrodes;
-        public List<int> PosteriorElectrodes
-        {
-            get { return _posteriorElectrodes; }
-            set 
-            { 
-                _posteriorElectrodes = value;
                 InitElectrodes();
             }
         }
@@ -56,7 +43,7 @@ namespace Daisy.ViewModels
 
         public void InitElectrodes()
         {
-            if (NumberOfElectrodes < 3 || PosteriorElectrodes == null)
+            if (NumberOfElectrodes < 3)
                 return;
 
             int solidTriangleMarkerPosition = NumberOfElectrodes / 3;
@@ -81,13 +68,51 @@ namespace Daisy.ViewModels
                     orientationMarker = EOrientationMarker.OutlineTriangle;
                 }
 
-                bool isPosterior = PosteriorElectrodes.Contains(number);
-
-                electrodes.Add(new ElectrodeViewModel(number, orientationMarker, isPosterior));
+                electrodes.Add(new ElectrodeViewModel(number, orientationMarker));
             }
 
             Electrodes = electrodes;
             NotifyPropertyChanged(nameof(Electrodes));
+        }
+
+        #endregion
+
+
+        #region Electrode Posterior
+
+        private List<int> _posteriorElectrodes;
+        public List<int> PosteriorElectrodes
+        {
+            get { return _posteriorElectrodes; }
+            set
+            {
+                _posteriorElectrodes = value;
+                InitElectrodes();
+            }
+        }
+
+        public void SetElectrodePosterior(int electrodeNumber, bool isPosterior)
+        {
+            if (electrodeNumber < 1 || electrodeNumber > Electrodes.Count)
+                return;
+
+            Electrodes[electrodeNumber - 1].IsPosterior = isPosterior;
+        }
+
+        public void SetElectrodesPosterior(List<int> electrodeNumbers, bool isPosterior)
+        {
+            foreach (var electrodeNumber in electrodeNumbers)
+            {
+                SetElectrodePosterior(electrodeNumber, isPosterior);
+            }
+        }
+
+        public void SetAllElectrodePosterior(bool isPosterior)
+        {
+            foreach (var electrode in Electrodes)
+            {
+                electrode.IsPosterior = isPosterior;
+            }
         }
 
         #endregion

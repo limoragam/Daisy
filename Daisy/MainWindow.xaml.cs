@@ -17,15 +17,17 @@ namespace Daisy
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            var catheterViewModel1 = new CatheterViewModel(10);
             List<int> posteriorElectrodes1 = new List<int> { 5, 6, 7 };
-            var catheterViewModel1 = new CatheterViewModel(10, posteriorElectrodes1);
+            catheterViewModel1.SetElectrodesPosterior(posteriorElectrodes1, true);
             List<int> electrodesMeetingCriteriaAdequacy1 = new List<int> { 3, 4, 5, 9 };
             catheterViewModel1.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy1, true);
             catheterViewModel1.SetElectrodeSelection(5, false);
             Catheter1.DataContext = catheterViewModel1;
 
+            var catheterViewModel2 = new CatheterViewModel(12);
             List<int> posteriorElectrodes2 = new List<int> { 11, 12 };
-            var catheterViewModel2 = new CatheterViewModel(12, posteriorElectrodes2);
+            catheterViewModel2.SetElectrodesPosterior(posteriorElectrodes2, true);
             List<int> electrodesMeetingCriteriaAdequacy2 = new List<int> { 9, 10, 11, 12 };
             catheterViewModel2.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy2, true);
             catheterViewModel2.SetAblationPhase(EAblationPhase.During);
@@ -33,8 +35,9 @@ namespace Daisy
             catheterViewModel2.AblationParam = EAblationParam.TemperatureRise;
             Catheter2.DataContext = catheterViewModel2;
 
+            var catheterViewModel3 = new CatheterViewModel(10);
             List<int> posteriorElectrodes3 = new List<int> { 1, 4, 5, 6 };
-            var catheterViewModel3 = new CatheterViewModel(10, posteriorElectrodes3);
+            catheterViewModel3.SetElectrodesPosterior(posteriorElectrodes3, true);
             List<int> electrodesMeetingCriteriaAdequacy3 = new List<int> { 4, 6, 7 };
             catheterViewModel3.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy3, true);
             catheterViewModel3.SetAblationPhase(EAblationPhase.After);

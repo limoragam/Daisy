@@ -4,13 +4,10 @@ namespace Daisy.ViewModels
 {
     public class ElectrodeViewModel : ViewModelBase
     {
-        public ElectrodeViewModel(int number, 
-                                  EOrientationMarker orientationMarker, 
-                                  bool isPosterior)
+        public ElectrodeViewModel(int number, EOrientationMarker orientationMarker)
         {
             Number = number;
             OrientationMarker = orientationMarker;
-            IsPosterior = isPosterior;
         }
 
         public int Index 
@@ -22,7 +19,17 @@ namespace Daisy.ViewModels
         }
         public int Number { get; set; } = 1;
         public EOrientationMarker OrientationMarker { get; set; }
-        public bool IsPosterior { get; set; } = false;
+
+        private bool _isPosterior;
+        public bool IsPosterior
+        {
+            get { return _isPosterior; }
+            set 
+            { 
+                _isPosterior = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         private bool _meetsAlignmentCriteria = false;
         public bool MeetsAlignmentCriteria
