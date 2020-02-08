@@ -2,7 +2,6 @@
 using daisy.ViewModels;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Daisy
 {
@@ -53,33 +52,6 @@ namespace Daisy
             data.SetElectrodeAlignmentIndication(9, true);
             data.AdvanceColoringTitle = "ldsadas";
             Daisy1.DataContext = data;
-            /*
-            List<int> posteriorElectrodes2 = new List<int> { 11, 12 };
-            var catheterViewModel2 = new DaisyViewModel(20, posteriorElectrodes2);
-            List<int> electrodesMeetingCriteriaAdequacy2 = new List<int> { 9, 10, 11, 12 };
-            catheterViewModel2.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy2, true);
-            catheterViewModel2.SetElectrodeSelection(7, false);
-            catheterViewModel2.AblationParam = EAblationParam.TemperatureRise;
-            Daisy2.DataContext = catheterViewModel2;
-
-            List<int> posteriorElectrodes3 = new List<int> { 1, 4, 5, 6 };
-            var catheterViewModel3 = new DaisyViewModel(20, posteriorElectrodes3);
-            List<int> electrodesMeetingCriteriaAdequacy3 = new List<int> { 4, 6, 7 };
-            catheterViewModel3.SetElectrodesAlignmentCriteriaAdequacy(electrodesMeetingCriteriaAdequacy3, true);
-            catheterViewModel3.SetElectrodeSelection(1, false);
-            catheterViewModel3.SetElectrodesAblationResult(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
-                new List<EAblationResult> { EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Heavy,
-                                            EAblationResult.Medium,
-                                            EAblationResult.Light,
-                                            EAblationResult.Medium,
-                                            EAblationResult.Light,
-                                            EAblationResult.Light});
-            catheterViewModel3.SetElectrodeNumberOfActivations(4, 2);
-            catheterViewModel3.SetElectrodeNumberOfActivations(6, 4);
-            Daisy3.DataContext = catheterViewModel3;*/
         }
 
         void OnButtonClick1(object sender, RoutedEventArgs e)
@@ -95,17 +67,6 @@ namespace Daisy
             //catheterViewModel1.PosteriorElectrodes = posteriorElectrodes1;
             //             catheterViewModel1.SetElectrodeAblationResult(5, EAblationResult.Heavy);
             data.IsPostAblation = true;
-
-        }
-        void OnButtonClick2(object sender, RoutedEventArgs e)
-        {
-            DaisyViewModel data = Daisy1.DataContext as DaisyViewModel;
-            
-
-        }
-        void OnButtonClick3(object sender, RoutedEventArgs e)
-        {
-            DaisyViewModel data = Daisy1.DataContext as DaisyViewModel;
 
         }
     }
