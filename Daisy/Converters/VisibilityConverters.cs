@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 
 
-namespace Daisy.Converters
+namespace daisy.Converters
 {
     public class BoolToVisibilityConverter : ConverterMarkupExtension<BoolToVisibilityConverter>
     {

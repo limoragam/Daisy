@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 
 
-namespace Daisy.Converters
+namespace daisy.Converters
 {
     // Returns a percentage of input length/number
     public class PercentageConverter : ConverterMarkupExtension<PercentageConverter>

@@ -1,13 +1,13 @@
-﻿using Daisy.Enums;
+﻿using System.Windows.Media;
+using Daisy.Enums;
 
-namespace Daisy.ViewModels
+namespace daisy.ViewModels
 {
-    public class ElectrodeViewModel : ViewModelBase
+    public class ElectrodeViewModel : BaseViewModel
     {
-        public ElectrodeViewModel(int number, EOrientationMarker orientationMarker)
+        public ElectrodeViewModel(int number)
         {
             Number = number;
-            OrientationMarker = orientationMarker;
         }
 
         public int Index 
@@ -17,8 +17,8 @@ namespace Daisy.ViewModels
                 return Number - 1;
             }
         }
-        public int Number { get; set; } = 1;
-        public EOrientationMarker OrientationMarker { get; set; }
+        public int Number { get; }
+        public ElectrodeFluoroMarker FluoroMarker { get; set; } = ElectrodeFluoroMarker.None;
 
         private bool _isPosterior;
         public bool IsPosterior
@@ -42,28 +42,6 @@ namespace Daisy.ViewModels
             }
         }
 
-        private bool _isSelected = true;
-        public bool IsSelected
-        {
-            get { return _isSelected; }
-            set 
-            { 
-                _isSelected = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private EAblationPhase _ablationPhase = EAblationPhase.Before;
-        public EAblationPhase AblationPhase
-        {
-            get { return _ablationPhase; }
-            set 
-            { 
-                _ablationPhase = value;
-                NotifyPropertyChanged();
-            }
-        }
-
         private int _numberOfActivations = 0;
         public int NumberOfActivations
         {
@@ -75,24 +53,93 @@ namespace Daisy.ViewModels
             }
         }
 
-        private EAblationParam _ablationParam = EAblationParam.ImpedanceDrop;
-        public EAblationParam AblationParam
+        ElectrodeStatus _status = ElectrodeStatus.NotSelected;
+        public ElectrodeStatus Status
         {
-            get { return _ablationParam; }
-            set 
-            { 
-                _ablationParam = value;
+            get { return _status; }
+            set
+            {
+                if (Status == value)
+                    return;
+
+                _status = value;
+                switch (_status)
+                {
+                    case ElectrodeStatus.Disconnected:
+                        TextDark = false;
+                        ColorLow = ColorHigh = Color.FromRgb(0, 0, 0);
+                        break;
+
+                    case ElectrodeStatus.NotSelected:
+                        TextDark = false;
+                        ColorLow = ColorHigh = Color.FromRgb(88, 88, 88);
+                        break;
+
+                    case ElectrodeStatus.Selected:
+                        TextDark = true;
+                        ColorLow = ColorHigh = Color.FromRgb(255, 210, 0);
+                        break;
+
+                    case ElectrodeStatus.Ablating:
+                        TextDark = false;
+                        ColorLow = ColorHigh = Color.FromRgb(255, 0, 0);
+                        break;
+
+                    case ElectrodeStatus.PostAblation:
+                        TextDark = false;
+                        ColorLow = Color.FromRgb(255, 204, 204);
+                        ColorHigh = Color.FromRgb(255, 0, 0);
+                        break;
+
+                    case ElectrodeStatus.NoColoringIndicators:
+                        TextDark = false;
+                        ColorLow = ColorHigh = Color.FromRgb(128, 0, 0);
+                        break;
+                }
                 NotifyPropertyChanged();
             }
         }
 
-        private double _ablationResult;
-        public double AblationResult
+        private bool _textDark;
+        public bool TextDark
         {
-            get { return _ablationResult; }
+            get { return _textDark; }
+            set
+            {
+                _textDark = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Color _colorLow;
+        public Color ColorLow
+        {
+            get { return _colorLow; }
+            set
+            {
+                _colorLow = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Color _colorHigh;
+        public Color ColorHigh
+        {
+            get { return _colorHigh; }
+            set
+            {
+                _colorHigh = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private double _intensity;
+        public double Intensity
+        {
+            get { return _intensity; }
             set 
-            { 
-                _ablationResult = value;
+            {
+                _intensity = value;
                 NotifyPropertyChanged();
             }
         }

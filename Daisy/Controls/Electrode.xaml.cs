@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Daisy.Controls
+namespace daisy.Controls
 {
     /// <summary>
     /// Interaction logic for Electrode.xaml

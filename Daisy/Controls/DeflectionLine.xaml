@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Daisy.Controls.OrientationLine"
+﻿<UserControl x:Class="daisy.Controls.DeflectionLine"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,30 +7,30 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Geometry x:Key="DGeometry.OrientationLine">m 27.748667,292.9224 c -8.79404,0 -17.25345,1.43276 -25.1575194,4.07757 -3.28062102,-1.01451 -2.93656902,-2.79487 -1.73989302,-4.83285 8.44766202,-2.8397 17.49282242,-4.37859 26.89742242,-4.37859 9.40459,0 18.44975,1.53889 26.89741,4.37859 1.19667,2.03798 1.54073,3.81834 -1.73989,4.83285 -7.90407,-2.64481 -16.36348,-4.07757 -25.15753,-4.07757 z</Geometry>
+        <Geometry x:Key="DGeometry.DeflectionLine">m 27.748667,292.9224 c -8.79404,0 -17.25345,1.43276 -25.1575194,4.07757 -3.28062102,-1.01451 -2.93656902,-2.79487 -1.73989302,-4.83285 8.44766202,-2.8397 17.49282242,-4.37859 26.89742242,-4.37859 9.40459,0 18.44975,1.53889 26.89741,4.37859 1.19667,2.03798 1.54073,3.81834 -1.73989,4.83285 -7.90407,-2.64481 -16.36348,-4.07757 -25.15753,-4.07757 z</Geometry>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.North" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush x:Key="DBrush.DeflectionLine.North" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#ff0000b6" Offset="0.0"/>
             <GradientStop Color="#ff0000fd" Offset="0.25"/>
             <GradientStop Color="#ff0000fd" Offset="0.75"/>
             <GradientStop Color="#ff0000b6" Offset="1.0"/>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.East" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush x:Key="DBrush.DeflectionLine.East" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#ff005610" Offset="0.0"/>
             <GradientStop Color="#ff008f30" Offset="0.25"/>
             <GradientStop Color="#ff008f30" Offset="0.75"/>
             <GradientStop Color="#ff005610" Offset="1.0"/>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.South" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush x:Key="DBrush.DeflectionLine.South" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#ff800000" Offset="0.0"/>
             <GradientStop Color="#ffb70000" Offset="0.25"/>
             <GradientStop Color="#ffb70000" Offset="0.75"/>
             <GradientStop Color="#ff800000" Offset="1.0"/>
         </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="DBrush.OrientationLine.West" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush x:Key="DBrush.DeflectionLine.West" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#ffb9b900" Offset="0.0"/>
             <GradientStop Color="#ffffff00" Offset="0.25"/>
             <GradientStop Color="#ffffff00" Offset="0.75"/>
@@ -73,21 +73,21 @@
                 </Style.Triggers>
             </Style>
         </Border.Style>
-        <Path Data="{StaticResource DGeometry.OrientationLine}" Stretch="UniformToFill" Width="{Binding Width, ElementName=_this}">
+        <Path Data="{StaticResource DGeometry.DeflectionLine}" Stretch="UniformToFill" Width="{Binding Width, ElementName=_this}">
             <Path.Style>
                 <Style TargetType="{x:Type Path}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Direction}" Value="North">
-                            <Setter Property="Fill" Value="{StaticResource DBrush.OrientationLine.North}"/>
+                            <Setter Property="Fill" Value="{StaticResource DBrush.DeflectionLine.North}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Direction}" Value="East">
-                            <Setter Property="Fill" Value="{StaticResource DBrush.OrientationLine.East}"/>
+                            <Setter Property="Fill" Value="{StaticResource DBrush.DeflectionLine.East}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Direction}" Value="South">
-                            <Setter Property="Fill" Value="{StaticResource DBrush.OrientationLine.South}"/>
+                            <Setter Property="Fill" Value="{StaticResource DBrush.DeflectionLine.South}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Direction}" Value="West">
-                            <Setter Property="Fill" Value="{StaticResource DBrush.OrientationLine.West}"/>
+                            <Setter Property="Fill" Value="{StaticResource DBrush.DeflectionLine.West}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

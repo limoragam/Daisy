@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Daisy.Converters
+namespace daisy.Converters
 {
     // Returns Visible if Enum matches any in the list inside parameter
     // Example list: ConverterParameter='EBig; EVeryBig'

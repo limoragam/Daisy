@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Daisy.Controls
+namespace daisy.Controls
 {
     public class CircularPanel : Panel
     {

@@ -1,0 +1,62 @@
+﻿<Window x:Class="Daisy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:daisy.Controls"
+        Loaded="MainWindow_Loaded"
+        Background="Black"
+        mc:Ignorable="d"
+        Style="{StaticResource DStyle.Window}"
+        Height="600"
+        Width="600">
+    
+    <Window.Resources>
+        <LinearGradientBrush x:Key="B" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.00" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.10" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.10" Color="#FF000000" />
+            <GradientStop Offset="0.12" Color="#FF000000" />
+
+            <GradientStop Offset="0.12" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.22" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.22" Color="#FF000000" />
+            <GradientStop Offset="0.24" Color="#FF000000" />
+
+            <GradientStop Offset="0.24" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.34" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.34" Color="#FF000000" />
+            <GradientStop Offset="0.36" Color="#FF000000" />
+
+            <GradientStop Offset="0.36" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.46" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.46" Color="#FF000000" />
+            <GradientStop Offset="0.48" Color="#FF000000" />
+
+            <GradientStop Offset="0.48" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.58" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.58" Color="#FF000000" />
+            <GradientStop Offset="0.60" Color="#FF000000" />
+
+            <GradientStop Offset="0.60" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.70" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.70" Color="#FF000000" />
+            <GradientStop Offset="0.72" Color="#FF000000" />
+
+            <GradientStop Offset="0.72" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.82" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.82" Color="#FF000000" />
+            <GradientStop Offset="0.84" Color="#FF000000" />
+
+            <GradientStop Offset="0.84" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.94" Color="#FFAAAAAA" />
+            <GradientStop Offset="0.94" Color="#FF000000" />
+            <GradientStop Offset="1.00" Color="#FF000000" />
+        </LinearGradientBrush>
+    </Window.Resources>
+    <Grid>
+        <controls:Daisy x:Name="Daisy1"  />
+        <Button Content="Button" Click="OnButtonClick1" HorizontalAlignment="Left" Margin="71,54,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+    
+</Window>

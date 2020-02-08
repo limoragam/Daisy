@@ -4,6 +4,6 @@
 .vs/Daisy/v16/Server/sqlite3/storage.ide
 .vs/Daisy/v16/Server/sqlite3/storage.ide-shm
 .vs/Daisy/v16/Server/sqlite3/storage.ide-wal
-Daisy/bin
-Daisy/obj
-Daisy/Properties
+**/bin/
+**/obj/
+

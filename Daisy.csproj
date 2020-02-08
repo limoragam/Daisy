@@ -55,19 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\OrientationLine.xaml.cs">
-      <DependentUpon>OrientationLine.xaml</DependentUpon>
+    <Compile Include="daisy\Controls\DeflectionLine.xaml.cs">
+      <DependentUpon>DeflectionLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrientationLineModel.cs" />
-    <Compile Include="Services\Consts.cs" />
-    <Compile Include="Services\GraphicConverters.cs" />
-    <Compile Include="Services\VisibilityConverters.cs" />
-    <Compile Include="Services\Enums.cs" />
-    <Page Include="Controls\Catheter.xaml">
+    <Compile Include="daisy\Models\DeflectionLineModel.cs" />
+    <Compile Include="daisy\Converters\GraphicConverters.cs" />
+    <Compile Include="daisy\Converters\VisibilityConverters.cs" />
+    <Compile Include="daisy\Converters\Enums.cs" />
+    <Page Include="daisy\Controls\Daisy.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\OrientationLine.xaml">
+    <Page Include="daisy\Controls\DeflectionLine.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -79,27 +78,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\Catheter.xaml.cs">
-      <DependentUpon>Catheter.xaml</DependentUpon>
+    <Compile Include="daisy\Controls\Daisy.xaml.cs">
+      <DependentUpon>Daisy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CircularPanel.cs" />
-    <Compile Include="Models\CatheterViewModel.cs" />
-    <Compile Include="Services\ConverterMarkupExtension.cs" />
-    <Compile Include="Services\MathConverters.cs" />
-    <Compile Include="Services\EnumConverters.cs" />
-    <Compile Include="Models\ViewModelBase.cs" />
+    <Compile Include="daisy\Controls\CircularPanel.cs" />
+    <Compile Include="daisy\Models\DaisyViewModel.cs" />
+    <Compile Include="daisy\Converters\ConverterMarkupExtension.cs" />
+    <Compile Include="daisy\Converters\MathConverters.cs" />
+    <Compile Include="daisy\Converters\EnumConverters.cs" />
+    <Compile Include="daisy\Models\BaseViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\Electrode.xaml">
+    <Page Include="daisy\Controls\Electrode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ElectrodeViewModel.cs" />
-    <Compile Include="Controls\Electrode.xaml.cs">
+    <Compile Include="daisy\Models\ElectrodeViewModel.cs" />
+    <Compile Include="daisy\Controls\Electrode.xaml.cs">
       <DependentUpon>Electrode.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
