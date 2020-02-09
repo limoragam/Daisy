@@ -6,7 +6,6 @@
         xmlns:controls="clr-namespace:daisy.Controls"
         Loaded="MainWindow_Loaded"
         mc:Ignorable="d"
-        Style="{StaticResource DStyle.Window}"
         Height="600"
         Width="600">
     

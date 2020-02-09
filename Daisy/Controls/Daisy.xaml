@@ -44,79 +44,81 @@
 		</Style>
 	</UserControl.Resources>
 
-	<Grid x:Name="OuterGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Border Background="Black" BorderBrush="#ff4e4e4e" BorderThickness="5,0,5,5">
+		<Grid x:Name="OuterGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
         
-        <TextBlock
-            Grid.Row="0"
-            Text="{Binding AdvanceColoringTitle}"
-            FontSize="20"
-            Foreground="White"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Center"
-            Visibility="{Binding IsPostAblation, Converter={converters:BoolToVisibilityConverter}}"/>
-        
-		<Border x:Name="BackCircle"
-				Grid.Row="1"
-				Background="{StaticResource DBrush.BackgroundCircle}" 
+			<TextBlock
+				Grid.Row="0"
+				Text="{Binding AdvanceColoringTitle}"
+				FontSize="20"
+				Foreground="White"
+				VerticalAlignment="Bottom"
 				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				CornerRadius="1000"
-				Height="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.83}" 
-				Width="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.83}"/>
+				Visibility="{Binding IsPostAblation, Converter={converters:BoolToVisibilityConverter}}"/>
+        
+			<Border x:Name="BackCircle"
+					Grid.Row="1"
+					Background="{StaticResource DBrush.BackgroundCircle}" 
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					CornerRadius="1000"
+					Height="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.83}" 
+					Width="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.83}"/>
 
-		<ItemsControl 
+			<ItemsControl 
+					Grid.Row="1"
+					ItemsSource="{Binding DeflectionLines}" 
+					Height="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}" 
+					Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<controls:CircularPanel/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<controls:DeflectionLine Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<ItemsControl ItemsSource="{Binding Electrodes}" Grid.Row="1">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<controls:CircularPanel/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<controls:Electrode RimThickness="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.085}">
+							<controls:Electrode.Width>
+								<MultiBinding Converter="{converters:NumberOfPieSlicesToChordConverter}">
+									<Binding Path="ActualWidth" ElementName="BackCircle" Converter="{converters:PercentageConverter}" ConverterParameter="0.5"/>
+									<Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
+								</MultiBinding>
+							</controls:Electrode.Width>
+							<controls:Electrode.Angle>
+								<MultiBinding Converter="{converters:PieSliceNumberToAngleConverter}">
+									<Binding Path="Index"/>
+									<Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
+								</MultiBinding>
+							</controls:Electrode.Angle>
+						</controls:Electrode>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>	
+			<Button 
 				Grid.Row="1"
-				ItemsSource="{Binding DeflectionLines}" 
-				Height="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}" 
-				Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=1.085}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<controls:CircularPanel/>
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<controls:DeflectionLine Width="{Binding Path=ActualWidth, ElementName=BackCircle, Converter={converters:PercentageConverter}, ConverterParameter=0.35}"/>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
-
-		<ItemsControl ItemsSource="{Binding Electrodes}" Grid.Row="1">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<controls:CircularPanel/>
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<controls:Electrode RimThickness="{Binding Path=ActualWidth, ElementName=OuterGrid, Converter={converters:PercentageConverter}, ConverterParameter=0.085}">
-						<controls:Electrode.Width>
-							<MultiBinding Converter="{converters:NumberOfPieSlicesToChordConverter}">
-								<Binding Path="ActualWidth" ElementName="BackCircle" Converter="{converters:PercentageConverter}" ConverterParameter="0.5"/>
-								<Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
-							</MultiBinding>
-						</controls:Electrode.Width>
-						<controls:Electrode.Angle>
-							<MultiBinding Converter="{converters:PieSliceNumberToAngleConverter}">
-								<Binding Path="Index"/>
-								<Binding Path="DataContext.Electrodes.Count" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}"/>
-							</MultiBinding>
-						</controls:Electrode.Angle>
-					</controls:Electrode>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>	
-		<Button 
-			Grid.Row="1"
-			Visibility="{Binding IsInReview, Converter={converters:BoolToVisibilityConverter}}"
-			VerticalAlignment="Bottom" 
-			Style="{StaticResource DStyle.Button.Play}" 
-			Height="40" Width="40" 
-			HorizontalAlignment="Left"
-            Command="{Binding PlayCommand}"/>
-	</Grid>
+				Visibility="{Binding IsInReview, Converter={converters:BoolToVisibilityConverter}}"
+				VerticalAlignment="Bottom" 
+				Style="{StaticResource DStyle.Button.Play}" 
+				Height="40" Width="40" 
+				HorizontalAlignment="Left"
+				Command="{Binding PlayCommand}"/>
+		</Grid>
+    </Border>
 </UserControl>

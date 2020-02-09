@@ -5,8 +5,6 @@
     <Application.Resources>
         <FontFamily x:Key="DFontFamily.Regular">pack://application:,,,/fonts/#Open Sans</FontFamily>
 
-        <Geometry x:Key="XGeometry.Close">M 1.5584647,8.7645046 4.8857648,5.4372045 8.213065,8.7645046 C 8.6161112,8.7681494 8.943077,8.6280861 8.9998709,7.9776987 L 5.6725708,4.6503985 8.9998709,1.3230985 C 8.9246985,0.87373358 8.6514793,0.62241542 8.2276005,0.52175694 L 4.9003003,3.8490568 1.5584644,0.53629293 C 1.1844217,0.63090051 0.84039882,0.77053769 0.77165852,1.3230989 L 4.1134945,4.6358628 0.78619431,7.9631631 C 0.91401369,8.6709306 1.2428594,8.6952084 1.5584647,8.7645046 Z</Geometry>
-
         <LinearGradientBrush x:Key="DLinearGradientBrush.Background.Helios" MappingMode="Absolute" StartPoint="12,5" EndPoint="12,19">
             <LinearGradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -31,65 +29,6 @@
                 </Canvas>
             </Viewbox>
         </ControlTemplate>
-
-        <Style x:Key="DStyle.Window" TargetType="{x:Type Window}">
-            <Setter Property="WindowChrome.WindowChrome">
-                <Setter.Value>
-                    <WindowChrome
-                        CaptionHeight="30"
-                        CornerRadius="0"
-                        GlassFrameThickness="0"
-                        NonClientFrameEdges="None"
-                        ResizeBorderThickness="5"
-                        UseAeroCaptionButtons="False"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="BorderBrush" Value="#ff4e4e4e"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Window}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-
-                            <Border Grid.RowSpan="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="5,50,5,5"/>
-
-                            <Button
-                                Grid.Row="0"
-                                Margin="20,0,0,0"
-                                HorizontalAlignment="Left"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Top"
-                                WindowChrome.IsHitTestVisibleInChrome="True"
-                                Click="CloseClick">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="#01000000" Height="15" Width="15">
-                                            <Path Data="{StaticResource XGeometry.Close}" Fill="#ff828282" Stretch="Uniform"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-
-                            <ContentControl
-                                Grid.Row="0"
-                                Height="36"
-                                Width="36"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Template="{StaticResource DControlTemplate.Canvas.Helios}"/>
-
-                            <AdornerDecorator Grid.Row="1">
-                                <ContentPresenter />
-                            </AdornerDecorator>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
     </Application.Resources>
 </Application>
